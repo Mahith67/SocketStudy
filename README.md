@@ -1,5 +1,6 @@
 # Ex.No:1a  			Study of Socket Programming
-
+<h3>Name: Mahith M</h3>
+<h3>Register Number: 212225240082</h3>
 ## Aim: 
 To perform a study on Socket Programming
 ## Introduction:
@@ -52,6 +53,71 @@ Socket programming finds applications in various domains, including web developm
 3.	File Transfer Protocol: Protocols like FTP (File Transfer Protocol) utilize socket programming for transferring files between a client and a server.
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
+
+## Server
+```
+import socket
+
+# Create socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind socket to IP and port
+host = '127.0.0.1'
+port = 12345
+server_socket.bind((host, port))
+
+# Listen for connections
+server_socket.listen(1)
+print("Server is waiting for connection...")
+
+# Accept client connection
+conn, addr = server_socket.accept()
+print("Connected to:", addr)
+
+# Receive data from client
+data = conn.recv(1024).decode()
+print("Client says:", data)
+
+# Send response to client
+message = "Hello Client, message received!"
+conn.send(message.encode())
+
+# Close connection
+conn.close()
+server_socket.close()
+```
+
+## Client
+```
+import socket
+
+# Create socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to server
+host = '127.0.0.1'
+port = 12345
+client_socket.connect((host, port))
+
+# Send message to server
+message = "Hello Server!"
+client_socket.send(message.encode())
+
+# Receive response from server
+data = client_socket.recv(1024).decode()
+print("Server says:", data)
+
+# Close socket
+client_socket.close()
+
+```
+
+## Output
+## Server.py
+<img width="1080" height="330" alt="image" src="https://github.com/user-attachments/assets/f0510dd6-b7d6-4687-847a-9457bf0249ea" />
+
+## Client.py
+<img width="1857" height="281" alt="image" src="https://github.com/user-attachments/assets/93313927-389d-483f-a397-32f35e1b67e7" />
 
 
 ## Result:
